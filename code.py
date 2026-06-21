@@ -1,5 +1,6 @@
 import alarm
 import board
+import os
 import time
 
 from adafruit_seesaw.seesaw import Seesaw
@@ -43,7 +44,7 @@ message: dict = {
     "battery": voltage,
 }
 
-sender = LoraSender(device_num=2)
+sender = LoraSender(device_num=int(os.getenv("DEVICE_ID", "123")))
 
 success = sender.send_data(message)
 
