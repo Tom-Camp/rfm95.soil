@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-CircuitPython firmware for an Adafruit Feather RP2040 RFM95 soil sensor node. The device wakes from deep sleep every hour, reads soil moisture/temperature via I2C (Adafruit Seesaw), checks battery voltage, and transmits a msgpack-encoded payload over LoRa (RFM9x) with ACK. It then returns to deep sleep.
+CircuitPython firmware for an Adafruit Feather RP2040 RFM95 soil sensor node. The device wakes from deep sleep every 3 hours (`sleep()` default: 10800 s), reads soil moisture/temperature via I2C (Adafruit Seesaw), checks battery voltage, and transmits a msgpack-encoded payload over LoRa (RFM9x) with ACK. It then returns to deep sleep.
 
 ## Hardware
 
@@ -30,10 +30,10 @@ cp settings.toml /media/$USER/CIRCUITPY/
 Runtime config lives in `settings.toml` (on the device root). Access via `os.getenv()`:
 
 ```toml
-DEVICE_NUM = 1
+DEVICE_NUM = 2
 ```
 
-`settings.toml` should not be committed — keep a `settings.toml.example` instead.
+`settings.toml` is gitignored — copy `settings.toml.example`. If `DEVICE_NUM` is missing or not an int, the node skips the send and goes back to sleep.
 
 ## Development Environment
 

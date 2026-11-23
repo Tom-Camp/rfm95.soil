@@ -33,7 +33,7 @@ import msgpack
 from io import BytesIO
 
 msgpack.pack({
-    "device_num": 2,          # int — from DEVICE_ID in settings.toml
+    "device_num": 2,          # int — from DEVICE_NUM in settings.toml
     "data": {
         "temp":    77.54,     # float — °F
         "soil":    350,       # int   — raw capacitance count
